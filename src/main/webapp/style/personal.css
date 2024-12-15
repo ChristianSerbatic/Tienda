@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+html, body {
+height: 100%;
+margin: 0; 
+display: flex;
+flex-direction: column;
+        }
+        
+.personal {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	width: 80%; 
+	max-width: 900px;
+	justify-content: center;  
+    align-items: center; 
+	text-align: center;
+	margin: 0 auto; 
+	padding-bottom: 20px;
+	}
+	
+header {
+    flex-shrink: 0; 
+}
+
+footer {
+    flex-shrink: 0; 
+}
