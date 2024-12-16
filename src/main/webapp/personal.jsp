@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="modelo.Usuario, servicio.UsuarioDAO"%>
+    pageEncoding="UTF-8" import="modelo.Usuario, servicio.UsuarioDAO, modelo.Pedido, java.util.ArrayList, servicio.CarritoDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +43,32 @@
 			} %>
 		   <button type="submit" class="btn btn-warning">Actualizar</button>
 		</form> 
+		<table class="table table-striped ">
+		  <caption class="table-caption" >Historial de pedidos</caption>
+			<thead>
+				<tr>
+				<th class="text-center">Fecha Pedido</th>
+				<th class="text-center">Total</th>
+				<th class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+			<% 
+					ArrayList<Pedido> listaPedidos = CarritoDAO.mostrarPedidos();
+					for(Pedido p : listaPedidos){
+						if(p.getUsuario_id() == UsuarioDAO.recuperaId((String)request.getSession().getAttribute("usuario"))){
+			%>
+					<tr>
+						<td class="text-center"><%= p.getFecha() %></td>
+						<td class="text-center"><%= p.getTotal() %></td>
+						<td class="text-center"><a class=" text-warning" href="" >Mostrar detalles</a></td>
+					</tr>	
+			<%		
+						}
+					}
+			%>
+			</tbody>
+		</table> 
 	</div>
 	<%@ include file="style/footer.jsp" %>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

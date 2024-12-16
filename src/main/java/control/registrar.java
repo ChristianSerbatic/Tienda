@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,7 +56,7 @@ public class registrar extends HttpServlet {
 		
 		
 		
-		if(!comprobarCampo(nombre) || !comprobarCampo(apellidos) || !comprobarCampo(email) || !comprobarCampo(clave)) {
+		if(!comprobarCampo(nombre) || !comprobarCampo(apellidos) || !comprobarCampo(email) || !comprobarCampo(clave) || !validarNombre(nombre) || !validarNombre(apellidos) || !validarEmail(email)) {
 		
 			if(!comprobarCampo(nombre)) {
 				errorCampo += "Debe proporcionar un nombre\n";
@@ -74,6 +75,19 @@ public class registrar extends HttpServlet {
 			
 			if (!comprobarCampo(clave)) {
 				errorCampo += "Debe proporcionar una clave\n";
+				lineas ++;
+			}
+			
+			if (!validarNombre(nombre)) {
+				errorCampo += "El nombre debe ser válido\n";
+				lineas ++;
+			}
+			if (!validarNombre(apellidos)) {
+				errorCampo += "El apellido debe ser válido\n";
+				lineas ++;
+			}
+			if (!validarEmail(email)) {
+				errorCampo += "El email debe ser válido\n";
 				lineas ++;
 			}
 			
@@ -124,5 +138,17 @@ public class registrar extends HttpServlet {
 		
 		return correcto;
 	}
+	
+    public static boolean validarNombre(String nombre) {
+        // Regex para solo letras (incluye acentos y espacios)
+        String nombreRegex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";
+        return Pattern.matches(nombreRegex, nombre);
+    }
+    
+    public static boolean validarEmail(String email) {
+        // Regex para validar email (string@string)
+        String emailRegex = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        return Pattern.matches(emailRegex, email);
+    }
 
 }

@@ -27,3 +27,21 @@ header {
 footer {
     flex-shrink: 0; 
 }
+table {
+	margin-top: 24px;
+}
+
+.table-caption {
+    caption-side: top; 
+    text-align: center; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+  }
+
+form {
+	margin-top: 24px;
+	border: solid, lightgrey, 1px;
+	padding: 12px 12px 12px 12px;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);	
+}  

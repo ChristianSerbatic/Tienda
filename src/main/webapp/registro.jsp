@@ -22,7 +22,7 @@
       				<label for="clave">Contraseña</label>
       				<input type="password" class="form-control" id="clave" name="clave" placeholder="Password" >
       				<label for="clave">Repite contraseña</label>
-      				<input type="password" class="form-control" id="clave2" name="clave" placeholder="Password" >
+      				<input type="password" class="form-control" id="clave2" name="clave2" placeholder="Password" >
     			</div>
   			</div>
   			<div class="form-group">
