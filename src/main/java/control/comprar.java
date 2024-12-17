@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Compra;
 import modelo.Detalle;
 import servicio.CarritoDAO;
+import servicio.CompraDAO;
 import modelo.Pedido;
 import servicio.UsuarioDAO;
 
@@ -43,6 +46,7 @@ public class comprar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion = request.getSession();
 		ArrayList<Detalle> carrito =  (ArrayList<Detalle>) sesion.getAttribute("carrito");
+		ArrayList<Compra> compra =  new ArrayList<Compra>();
 		
 		if(sesion.getAttribute("usuario") == null) {
 			
@@ -57,6 +61,21 @@ public class comprar extends HttpServlet {
 			p.setUsuario_id(id_usuario);
 			CarritoDAO.reducirStock(carrito);
 			CarritoDAO.insertarPedido(p);
+			for(Detalle detalle : carrito) {
+				Compra c;
+				try {
+					c = new Compra(CarritoDAO.obtenerUltimoPedido().getId(), detalle.getProducto_id(), id_usuario, detalle.getUnidades(), detalle.getPrecioUnidad());
+					compra.add(c);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			CompraDAO.insertarCompras(compra);			
+			
+			
+			
 			request.getRequestDispatcher("comprado.jsp").forward(request, response);
 		}
 		

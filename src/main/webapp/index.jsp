@@ -27,7 +27,7 @@
 		  <label for="pesca">Productos de pesca</label><br>
 		  <input type="checkbox" id="esqui" name="esqui" value="2">
 		  <label for="esqui">Productos de esqui</label><br><br>
-	    <input type="submit" value="Filtrar"><input type="submit" value="Borrar filtros">
+	    <input style="margin-right:5px"  type="submit" value="Filtrar"><input type="submit" value="Borrar filtros">
 	  </form>
 	</div>
 	<script>
@@ -96,7 +96,6 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                         <a href="detalleProducto?id=<%= producto.getId() %>">
                         	<img class="card-img-top" src="imagenes/<%= producto.getImagen() %>" alt="<%= producto.getNombre() %>">
                         </a>
@@ -113,7 +112,7 @@
                         </div>
                         
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="aCarrito?id=<%= producto.getId() %>">Add to cart</a></div>
+                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="aCarrito?id=<%= producto.getId() %>">Añadir al carrito</a></div>
                     	</div>
                 	</div>
             	</div>
@@ -127,7 +126,7 @@
 		   		<div class="col mb-5">
                     <div class="card h-100">
                         <!-- Sale badge-->
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        
                         <a href="detalleProducto?id=<%= producto.getId() %>">
                         	<img class="card-img-top" src="imagenes/<%= producto.getImagen() %>" alt="<%= producto.getNombre() %>">
                         </a>
@@ -144,7 +143,7 @@
                         </div>
                         
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="aCarrito?id=<%= producto.getId() %>">Add to cart</a></div>
+                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="aCarrito?id=<%= producto.getId() %>">Añadir al carrito</a></div>
                     	</div>
                 	</div>
             	</div>

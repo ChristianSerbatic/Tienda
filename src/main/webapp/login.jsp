@@ -12,7 +12,7 @@
 	<%@ include file="style/header.jsp" %>
 
 	<form id="lang" action="cambiarIdioma.jsp" method="POST">
-	    <label for="language">Seleccionar idioma:</label>
+	    <label for="language"><%= LanguageUtil.getMessage("login.idioma", request) %>:</label>
 	    <select name="language" onchange="this.form.submit()">
 	        <option value="es" <%= request.getSession().getAttribute("lang") != null && "es".equals(((Locale) request.getSession().getAttribute("lang")).getLanguage()) ? "selected" : "" %>>Español</option>
 	        <option value="en" <%= request.getSession().getAttribute("lang") != null && "en".equals(((Locale) request.getSession().getAttribute("lang")).getLanguage()) ? "selected" : "" %>>English</option>

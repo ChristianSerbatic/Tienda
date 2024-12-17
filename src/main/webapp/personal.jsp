@@ -61,7 +61,7 @@
 					<tr>
 						<td class="text-center"><%= p.getFecha() %></td>
 						<td class="text-center"><%= p.getTotal() %></td>
-						<td class="text-center"><a class=" text-warning" href="" >Mostrar detalles</a></td>
+						<td class="text-center"><a class=" text-warning" href="detallesPedido?idPedido=<%= p.getId() %>" >Mostrar detalles</a></td>
 					</tr>	
 			<%		
 						}

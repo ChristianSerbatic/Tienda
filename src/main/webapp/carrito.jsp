@@ -42,6 +42,25 @@
 	<%		
 		}
 	%>
+	
+	<% if (listaCarrito.size()==0){ %>
+		
+			<tr class="d-flex justify-content-evenly align-items-center" >
+				<td></td>
+				<td></td>
+				<td><p>No existen productos en el carrito</p></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr class="d-flex justify-content-around align-items-center w-75">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	
+	<% } else { %>
 			<tr class="d-flex justify-content-evenly align-items-center" >
 				<td></td>
 				<td></td>
@@ -56,6 +75,7 @@
 				<td><a class="btn btn-warning" href="comprar" >Comprar</a></td>
 				<td></td>
 			</tr>
+		<% 	} %>
 	<%
 	   }
 	%>

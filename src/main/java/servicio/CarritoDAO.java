@@ -78,10 +78,11 @@ public class CarritoDAO {
     	Connection conexion = Conexion.getConexion();
     	if (conexion != null) {
     		try {
-    			PreparedStatement stmt = conexion.prepareStatement("insert into pedido ( usuario_id, fecha) values(?, ?)");
+    			PreparedStatement stmt = conexion.prepareStatement("insert into pedido ( usuario_id, fecha, total) values(?, ?, ?)");
 
     			stmt.setInt(1, p.getUsuario_id());
     			stmt.setString(2, p.getFecha());
+    			stmt.setDouble(3, p.getTotal());
     			
     			int i = stmt.executeUpdate();
   	            System.out.println(i + " detalle insertado");
@@ -151,6 +152,42 @@ public class CarritoDAO {
 	        }
 		
 		Conexion.desconectar();
+    }
+ 
+    public static Pedido mostrarPedido(int idPedido){
+      	Connection conexion = Conexion.getConexion();
+      	Pedido p = new Pedido();
+      	
+    	if (conexion != null) {
+            PreparedStatement statement;
+			try {
+				statement = conexion.prepareStatement("Select * from pedido WHERE id = ?");
+			     
+            
+            statement.setInt(1, idPedido);
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()) {
+                p.setId(rs.getInt("id"));
+            	p.setUsuario_id(rs.getInt("usuario_id"));
+            	p.setFecha(rs.getString("fecha"));
+            	p.setMetodopago(rs.getString("metodopago"));
+            	p.setTotal(rs.getDouble("total"));
+            }
+
+            Conexion.desconectar();
+            
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+        } else {
+            System.out.println("Conexion no realizada");
+        }
+    	
+    	return p;
     }
     
 }
